@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Redacted!</title>
+  
+  <style>
+  body{
+ font-family: "courier";
+ abackground-color: #333;
+ acolor: #999;
+}
+
+#glue {
+ color: #cc33ff;
+ text-shadow: 0 0 5px rgba(0,160,240,1);
+}
+#text{
+
+	text-align: center;
+	margin-top: 10%
+}
+#template{
+	background-color: #fff;
+	color: #000;
+	apadding-left: 5%;
+	apadding-right: 5%;
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+
+  </style>
+
+  
+  
+</head>
+<body>
+	<div id="text">
+ <h2>
+  Redacted!
+ </h2>
+  <p>
+   Generate some random redacted text.
+   <br>Enter a positive number to designate sentence length, <br>or make the number negative to specify number of sentences instead.
+   <br>Leave blank to randomize.
+  </p>
+  <p>
+  	<input type="text" id="length" placeholder="sentence length">
+   <button onclick="submit()">Redact</button>
+  </p>
+ <p id="template">
+  
+ </p>
+ </div>
+ <script>
+ 
+var output, input, sentence_length, period,sentence_quantity;
+
+
+function submit(){
+ output ="";
+	period=". ";
+	input=document.getElementById('length').value;
+	sentence_length=input;
+	sentence_quantity=1;
+	if(input>0){
+		period="";
+	}else if(input<0){
+		input*=-1;
+		sentence_length=Math.floor(Math.random()*10)+5;
+		sentence_quantity=input;
+	}else{
+		sentence_length=Math.floor(Math.random()*10)+5;
+		sentence_quantity=Math.floor(Math.random()*5)+1;
+	}
+	for(m=0;m<sentence_quantity;m++){
+		for(i=0; i<sentence_length;i++){
+			var max=Math.floor(Math.random()*7)+1;
+			for(j=0;j<max;j++){
+				output+="&#x2588;"
+			}
+			output+=" ";
+		}
+		output=output.substring(0, output.length-1);
+		output+=period;
+	}
+ document.getElementById('template').innerHTML=output;
+}
+
+
+ </script>
+ 
+</body>
+</html>
+
+
+
+
+
