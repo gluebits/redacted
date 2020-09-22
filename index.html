@@ -75,10 +75,43 @@ function submit(){
 		input*=-1;
 		sentence_length=Math.floor(Math.random()*10)+5;
 		sentence_quantity=input;
+	}else if(input.length>0){
+		sentence_quantity=0;
+		for(n=0;n<input.length;n++){
+			switch(input[n]){
+				case '.':
+				output+=".";
+				break;
+
+				case '?':
+				output+='?';
+				break;
+
+				case '!':
+				output+='!';
+				break;
+
+				case ',':
+				output+=',';
+				break;
+
+				case ':':
+				output+=':';
+				break;
+
+				case ' ':
+				output+=" ";
+				break;
+
+				default:
+				output+="&#x2588;";
+			}
+		}
 	}else{
 		sentence_length=Math.floor(Math.random()*10)+5;
 		sentence_quantity=Math.floor(Math.random()*5)+1;
 	}
+
 	for(m=0;m<sentence_quantity;m++){
 		for(i=0; i<sentence_length;i++){
 			var max=Math.floor(Math.random()*7)+1;
