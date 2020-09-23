@@ -61,8 +61,8 @@ input{font-family: "courier"};
  </div>
  <script>
  
-var output, input, sentence_length, period,sentence_quantity;
-
+var output, input, sentence_length, period,sentence_quantity,rand_sent_length;
+var stand_dev=3;
 
 function submit(){
  	output ="";
@@ -70,11 +70,13 @@ function submit(){
 	input=document.getElementById('length').value;
 	sentence_length=input;
 	sentence_quantity=1;
+	rand_sent_length=1;
 	if(input>0){
+		rand_sent_length=0;
 		period="";
 	}else if(input<0){
 		input*=-1;
-		sentence_length=Math.floor(Math.random()*10)+5;
+		//sentence_length=Math.floor(Math.random(5)*10)+5;
 		sentence_quantity=input;
 	}else if(input.length>0){
 		sentence_quantity=0;
@@ -109,14 +111,17 @@ function submit(){
 			}
 		}
 	}else{
-		sentence_length=Math.floor(Math.random()*10)+5;
+		//sentence_length=Math.floor(Math.random()*10)+5;
 		sentence_quantity=Math.floor(Math.random()*5)+1;
 	}
 
 	for(m=0;m<sentence_quantity;m++){
+		if(rand_sent_length){
+			sentence_length=Math.floor(Math.random()*10)+5;
+		}
 		for(i=0; i<sentence_length;i++){
-			var max=Math.floor(Math.random()*7)+1;
-			for(j=0;j<max;j++){
+			var word_length=Math.floor(gaussianRand()*7)+1;
+			for(j=0;j<word_length;j++){
 				output+="&#x2588;"
 			}
 			output+=" ";
@@ -127,6 +132,18 @@ function submit(){
  document.getElementById('template').innerHTML=output;
 }
 
+//copy/pasted from stack overflow- 
+//creates a random number with a normal, not uniform, distribution
+//increase stand_dev to sharpen the curve
+function gaussianRand() {
+  var rand = 0;
+
+  for (var i = 0; i < stand_dev; i += 1) {
+    rand += Math.random();
+  }
+
+  return rand / stand_dev;
+}
 
  </script>
  
