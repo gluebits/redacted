@@ -38,7 +38,6 @@ input{font-family: "courier"};
   </style>
 
   
-  
 </head>
 <body>
 	<div id="text">
@@ -46,7 +45,7 @@ input{font-family: "courier"};
   Redacted!
  </h2>
   <p>
-  	v1.07
+  	v1.07.1
    <br>Generate some random redacted text.
    <br>Enter a positive number to designate sentence length, <br>or make the number negative to specify number of sentences instead.
    <br>Leave blank to randomize.
@@ -121,7 +120,7 @@ function submit(){
 			sentence_length=Math.floor(Math.random()*10)+5;
 		}
 		for(i=0; i<sentence_length;i++){
-			var word_length=Math.floor(gaussianRand()*7)+1;
+			var word_length=Math.floor(gaussianRand()*8)+1;
 			for(j=0;j<word_length;j++){
 				output+="&#x2588;"
 			}
@@ -150,8 +149,3 @@ function gaussianRand() {
  
 </body>
 </html>
-
-
-
-
-
